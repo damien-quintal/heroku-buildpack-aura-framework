@@ -20,7 +20,7 @@ mkdir -p $BIN_DIR
 cd $BIN_DIR
 
 if [ ! -d aura ]; then
-  heroku git:clone -a git@github.com:forcedotcom/aura.git
+  git clone https://github.com/forcedotcom/aura.git
 fi
 
 message "Move to aura repo and fetch latest"
