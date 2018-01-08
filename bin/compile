@@ -10,14 +10,6 @@ function message() {
   echo "-----> $*..."
 }
 
-function indent() {
-  c='s/^/       /'
-  case $(uname) in
-    Darwin) sed -l "$c";;
-    *)      sed -u "$c";;
-  esac
-}
-
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
@@ -28,7 +20,7 @@ mkdir -p $BIN_DIR
 cd BIN_DIR
 
 if [ ! -d aura ]; then
-  git@github.com:forcedotcom/aura.git
+  git clone git@github.com:forcedotcom/aura.git
 fi
 
 message "Move to aura repo and fetch latest"
@@ -39,16 +31,16 @@ git pull origin master
 
 message "Looking up latest aura framework tag"
 LATEST=`git describe --tags --match='v0.*' $(git rev-list --tags --max-count=1)`
-indent "Tag $LATEST"
+message "Tag $LATEST"
 
 message "Checkout latest tag"
 git checkout tags/$LATEST -b "$LATEST"
-indent "Tag checked out"
+message "Tag checked out"
 
 message "Maven clean and install"
 mvn clean install
-indent "Maven install complete"
+message "Maven install complete"
 
 message "Start jetty server"
 ./bin/jetty-start
-indent "Aura Framework running!"
+message "Aura Framework running!"
