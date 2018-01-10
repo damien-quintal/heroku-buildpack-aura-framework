@@ -28,14 +28,7 @@ cd aura
 git fetch
 git fetch --all --tags --prune
 git pull origin master
-
-message "Looking up latest aura framework tag"
-LATEST=`git describe --tags --match='v0.*' $(git rev-list --tags --max-count=1)`
-message "Tag $LATEST"
-
-message "Checkout latest tag"
-git checkout tags/$LATEST -b "$LATEST"
-message "Tag checked out"
+message "We have the lastest master branch!"
 
 message "Maven clean and install"
 mvn clean install
