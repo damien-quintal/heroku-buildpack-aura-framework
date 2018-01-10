@@ -14,25 +14,7 @@ BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 
-BIN_DIR=$BUILD_DIR/aura
-mkdir -p $BIN_DIR
-
-cd $BIN_DIR
-
-if [ ! -d aura ]; then
-  git clone https://github.com/forcedotcom/aura.git
-fi
-
-message "Move to aura repo and fetch latest"
-cd aura
-git fetch
-git fetch --all --tags --prune
-git pull origin master
-message "We have the lastest master branch!"
-
-message "Maven clean and install"
-mvn clean install
-message "Maven install complete"
+cd $BUILD_DIR
 
 message "Start jetty server"
 ./bin/jetty-start
