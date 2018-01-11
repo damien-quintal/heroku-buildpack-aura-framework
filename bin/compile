@@ -14,9 +14,8 @@ BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 
-cd $BUILD_DIR/aura-jetty
-export MAVEN_OPTS="-Xmx1024m -Xms512m"
+cd $BUILD_DIR
 
 message "Start jetty server"
-mvn org.eclipse.jetty:jetty-maven-plugin:run
+./bin/jetty-start
 message "Aura Framework running!"
