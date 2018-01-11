@@ -14,12 +14,8 @@ BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 
-cd $BUILD_DIR
-
-message "Clean maven install"
-mvn clean install
-message "Maven install done!"
+cd $BUILD_DIR/aura
 
 message "Start jetty server"
-./bin/jetty-start -Djetty.port=80
+./bin/jetty-start
 message "Aura Framework running!"
