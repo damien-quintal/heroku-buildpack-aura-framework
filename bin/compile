@@ -16,6 +16,10 @@ ENV_DIR=${3:-}
 
 cd $BUILD_DIR
 
+message "Clean maven install"
+mvn clean install
+message "Maven install done!"
+
 message "Start jetty server"
-./bin/jetty-start
+./bin/jetty-start -Djetty.port=80
 message "Aura Framework running!"
